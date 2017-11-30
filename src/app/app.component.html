@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <h2>Add Item to Cart:</h2>
       <form [formGroup]="cartFrom" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -27,24 +27,28 @@
                 [disabled]="!cartFrom.valid">Add Item</button>
       </form>
     </div>
-    <div class="col-sm-offset-1 col-sm-7">
+    <div class="col-md-offset-1 col-md-7">
         <h2>Cart:</h2>
-        <table class="table">
+      <div class="table-cart-wrap">
+        <table class="table table-cart">
           <thead>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Amount</td>
-            </tr>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Amount</td>
+          </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of cartItems">
-              <td>{{item.name}}</td>
-              <td>{{item.price}}</td>
-              <td>{{item.amount}}</td>
-            </tr>
+          <tr *ngFor="let item of cartItems">
+            <td>{{item.id | date: 'dd/MM/yy hh:mm:ss'}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.amount}}</td>
+          </tr>
           </tbody>
         </table>
+      </div>
     </div>
   </div>
 </div>

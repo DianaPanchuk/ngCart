@@ -1,4 +1,4 @@
-export class cartItem {
+export class CartItem {
   constructor(
     private id: Date,
     private name: string,

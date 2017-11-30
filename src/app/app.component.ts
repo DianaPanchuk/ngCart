@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { cartItem } from './cartItem.model';
+import { CartItem } from './cartItem.model';
+import { StoreService } from './store.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,13 @@ import { cartItem } from './cartItem.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  cartItems: cartItem[] = [];
+  cartItems: CartItem[] = [];
   cartFrom: FormGroup;
 
-  constructor() {}
+  constructor(private store: StoreService) {}
 
   ngOnInit() {
+    this.cartItems = this.store.getCartItems();
     this.initCartForm();
   }
 
@@ -33,14 +35,13 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    this.cartItems.push(
-      new cartItem(
+    const newCartItem = new CartItem(
         new Date(),
         this.cartFrom.get('name').value,
         this.cartFrom.get('price').value,
         this.cartFrom.get('amount').value
-      )
     );
+    this.store.updateCart(newCartItem);
     this.cartFrom.reset();
   }
 }
