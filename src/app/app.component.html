@@ -53,7 +53,8 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of cartItems | filter:filterString">
-            <td>{{item.id | date: 'mediumDate HH:mm:ss'}}</td>
+            <td>{{item.id | date: 'medium'}}</td>
+            
             <td>{{item.name}}</td>
             <td>{{item.price}}</td>
             <td>{{item.amount}}</td>
