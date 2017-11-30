@@ -11,6 +11,7 @@ import { StoreService } from './store.service';
 export class AppComponent implements OnInit {
   cartItems: CartItem[] = [];
   cartFrom: FormGroup;
+  filterString = '';
 
   constructor(private store: StoreService) {}
 
@@ -43,5 +44,8 @@ export class AppComponent implements OnInit {
     );
     this.store.updateCart(newCartItem);
     this.cartFrom.reset();
+  }
+  onClearFilter() {
+    this.filterString = '';
   }
 }

@@ -7,3 +7,6 @@
 .table-cart {
   min-width: 400px;
 }
+.btn-link:focus {
+  outline: none;
+}
