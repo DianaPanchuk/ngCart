@@ -1,0 +1,12 @@
+.form-control.ng-touched.ng-invalid {
+  border-color: red;
+}
+.table-cart-wrap {
+  overflow: auto;
+}
+.table-cart {
+  min-width: 400px;
+}
+.btn-link:focus {
+  outline: none;
+}

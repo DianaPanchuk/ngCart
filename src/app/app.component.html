@@ -1,4 +1,67 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Add Item to Cart:</h2>
+      <form [formGroup]="cartFrom" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 placeholder="name"
+                 formControlName="name">
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="price"
+            formControlName="price">
+        </div>
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 placeholder="amount"
+                 formControlName="amount">
+        </div>
+        <button class="btn btn-success"
+                type="submit"
+                [disabled]="!cartFrom.valid">Add Item</button>
+      </form>
+    </div>
+    <div class="col-md-offset-1 col-md-7">
+      <h2>Cart:</h2>
+      <div class="form-group">
+        <div class="clearfix">
+          <label class="pull-left">set time </label>
+          <button type="button"
+                  class="btn-link pull-right"
+                  (click)="onClearFilter()">clear</button>
+        </div>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="filterString"
+               placeholder="Enter time">
+      </div>
+      <div class="table-cart-wrap">
+        <table class="table table-cart">
+          <thead>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Amount</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of cartItems | filter:filterString">
+            <td>{{item.id | date: 'medium'}}</td>
+            
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.amount}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
